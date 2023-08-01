@@ -12,7 +12,7 @@ import com.sevenmart.utilities.GeneralUtility;
 public class AdminUsersTest extends Base{
 	AdminUsersPage adminUsersPage;
 	LoginPage loginpage;
-	@Test 
+	@Test(priority=1)
 	public void verify_HitOnAdminUsersPage() {
 		loginpage=new LoginPage(driver);
 		adminUsersPage=new AdminUsersPage(driver);

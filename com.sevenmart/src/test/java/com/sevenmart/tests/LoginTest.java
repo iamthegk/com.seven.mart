@@ -14,14 +14,14 @@ public class LoginTest extends Base{
 	HomePage homepage;
 	ExcelUtility excelutility=new ExcelUtility();
 	
-	@Test
+	@Test(priority=1)
 	public void verify_AdminUserlogin() {
 		loginpage =new LoginPage(driver);
 		homepage=new HomePage(driver);
 		loginpage.login();
 		String actualProfileName=homepage.getProfileName();
 		String expectedProfileName="Admin";
-		Assert.assertEquals(actualProfileName,expectedProfileName);
+		Assert.assertEquals(actualProfileName,expectedProfileName,"error");
 		
 	}
 	@Test
