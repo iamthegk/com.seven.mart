@@ -1,6 +1,8 @@
 package com.sevenmart.utilities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -74,6 +76,10 @@ public class GeneralUtility {
 		 String firstName = faker.name().firstName();
 		 return firstName;
 		
+	}
+	public static String getTimeStamp() {
+		String timeStamp = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss").format(new Date());
+		return timeStamp;
 	}
 	
 

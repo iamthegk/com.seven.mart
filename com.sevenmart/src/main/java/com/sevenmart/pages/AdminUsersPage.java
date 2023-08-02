@@ -3,6 +3,7 @@ package com.sevenmart.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -25,8 +26,10 @@ public class AdminUsersPage {
 	}
 	@FindBy(xpath="//a[@href='https://groceryapp.uniqassosiates.com/admin/list-admin' and @class=' nav-link']")
 	private WebElement adminUsersButton;
+	@CacheLookup
 	@FindBy(xpath="//input[@id='username']")
 	private WebElement userNameField;
+	@CacheLookup
 	@FindBy(xpath="//input[@id='password']")
 	private WebElement passwordField;
 	@FindBy(xpath="//a[@class='btn btn-rounded btn-danger']")
@@ -82,7 +85,7 @@ public class AdminUsersPage {
 		if (userType.equals("Staff")) {
 			pageutility.selectByVisibleText(selectUserType,"Staff");
 		}
-		else if() {
+		else if(userType.equals("Staff")) {
 			// fill up
 		}
 	}

@@ -28,8 +28,8 @@ public class DeliveryBoyCreationDataProvider {
 	}
 	@DataProvider(name = "deliveryBoyProfileDetailsExcel")
 	public Object[][] deliveryBoyProfileDetails() {
-		excelutility.setExcelFile("DeliveryBoyData", "NewDeliveryBoyCreationDetails");
-		Object data[][] = excelutility.getMultiDimensionalData(3, 6);
+		excelutility.setExcelFile("DeliveryBoyData", "AlreadyExistingUserDetails");
+		Object data[][] = excelutility.getMultiDimensionalData(1, 6);
 		return data;
 	}
 

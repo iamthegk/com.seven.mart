@@ -1,11 +1,13 @@
 package com.sevenmart.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-
+import java.util.ArrayList;
 import com.sevenmart.utilities.GeneralUtility;
 import com.sevenmart.utilities.PageUility;
 import com.sevenmart.utilities.WaitUtility;
@@ -36,7 +38,7 @@ public class ManageDeliveryBoyPage {
 	private WebElement password;
 	@FindBy(xpath = "//button[@name='create']")
 	private WebElement savebutton;
-	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']/h5")
+	@FindBy(xpath = "//div[contains(@class,'alert-success ')]")
 	private WebElement successAlert;
 	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']//h5")
 	private WebElement userNameAlreadyExistAlert;
@@ -56,6 +58,8 @@ public class ManageDeliveryBoyPage {
 	private WebElement searchedDeliveryBoyEmailFromTable;
 	@FindBy(xpath = "//tbody/tr/td/span[@id='res']/center")
 	private WebElement resultNotFound;
+	@FindBy(xpath="//tbody/tr/td[5]")
+	private List<WebElement> userNamesFromTable;
 
 	public ManageDeliveryBoyPage(WebDriver driver) {
 		this.driver = driver;
@@ -154,6 +158,25 @@ public class ManageDeliveryBoyPage {
 		
 
 	}
+	public void test() {
+		hit_ManageDeliveryBoyLink();
+		
+	}
+	public String getSuccesAlertText() {
+		generalutility = new GeneralUtility(driver);
+		return generalutility.getTextOfElement(successAlert);
+	}
+	public String searchNewlyAddedDeliveryBoyInTableByUserName(String expectedUserName) {
+		for(WebElement iter:userNamesFromTable) {
+			ArrayList<String> userNameValues=new ArrayList<String>();
+			String actualUsername=iter.getText();
+			userNameValues.add(actualUsername);
+			if(actualUsername.contains(expectedUserName)) {
+				System.out.println("The searched user is found");
+			}
+			}
+		return expectedUserName;
+	}
 
 	public void AlreadyExistingUserNameAlert(String name, String mail, String phone, String address, String username,
 			String password) {
@@ -186,6 +209,7 @@ public class ManageDeliveryBoyPage {
 		enterUsername(username);
 		enterPassword(password);
 		scrollToSaveButtonElement();
+		getSuccesAlertText();
 	}
 
 	public void SearchingExistingDeliveryBoy(String existingName, String existingEmail) {

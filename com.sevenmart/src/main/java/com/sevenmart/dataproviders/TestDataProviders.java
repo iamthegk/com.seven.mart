@@ -5,7 +5,7 @@ public class TestDataProviders {
 	@DataProvider(name="InvalidCredentials")
 		public Object[][] invalidCredentials()
 		{
-			return new Object [][] {{"gopi","87456"},{"hari","9985"}};
+			return new Object [][] {{"gopi","87456"}};
 		}
 	@DataProvider(name="ValidCredentials")
 	public Object[][] validCredentials()

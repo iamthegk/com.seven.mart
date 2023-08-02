@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import com.sevenmart.constants.Constants;
 import com.sevenmart.utilities.GeneralUtility;
@@ -15,6 +16,7 @@ import com.sevenmart.utilities.WaitUtility;
 public class LoginPage {
 	WebDriver driver;
 	GeneralUtility generalutility;
+	HomePage homepage;
 	Properties properties = new Properties();// java inbuilt class for reading files in keyvalue pair.
 	FileInputStream fileinputstream;// file read
 	WaitUtility waitutility;
@@ -77,6 +79,11 @@ public class LoginPage {
 	public String getErrorMessage() {
 		generalutility = new GeneralUtility(driver);
 		return generalutility.getTextOfElement(errorMessage);
+	}
+	public void AdminUserlogin() {
+		login();
+		
+		
 	}
 
 }
