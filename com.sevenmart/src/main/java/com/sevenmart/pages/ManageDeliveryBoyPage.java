@@ -166,16 +166,34 @@ public class ManageDeliveryBoyPage {
 		generalutility = new GeneralUtility(driver);
 		return generalutility.getTextOfElement(successAlert);
 	}
-	public String searchNewlyAddedDeliveryBoyInTableByUserName(String expectedUserName) {
+	public String searchingByUserName(String expectedUserName) {
 		for(WebElement iter:userNamesFromTable) {
 			ArrayList<String> userNameValues=new ArrayList<String>();
 			String actualUsername=iter.getText();
 			userNameValues.add(actualUsername);
-			if(actualUsername.contains(expectedUserName)) {
+			if(actualUsername.contains(expectedUserName)) {//pass this on test
 				System.out.println("The searched user is found");
 			}
+			
 			}
-		return expectedUserName;
+			
+			
+		
+		return null;
+	}
+	public boolean checking(String expectedusername) {
+		boolean value = false;
+		List<WebElement> list1=userNamesFromTable ;
+		
+		for(int i=0; i < list1.size(); i ++) {
+		if(!list1.get(i).getText().equals(expectedusername))
+				{
+		value= false;
+		break;
+		}
+		
+	}
+		return value;
 	}
 
 	public void AlreadyExistingUserNameAlert(String name, String mail, String phone, String address, String username,

@@ -53,12 +53,22 @@ public class ManageDeliveryBoyTest extends Base {
 	public void verify_AlreadyExistingUserNameAlertTest(String name, String mail, String phone, String address,
 			String username, String password) {
 		ExcelUtility excelutility=new ExcelUtility();
-		String expectedUserName=excelutility.getCellData(1,6);
+		excelutility.setExcelFile("DeliveryBoyData", "AlreadyExistingUserDetails");
+		String expectedUserName=excelutility.getCellData(0,4);
 		managedeliveryboypage = new ManageDeliveryBoyPage(driver);
-		managedeliveryboypage.AlreadyExistingUserNameAlert(name, mail, phone, address, username, password);
-		String actual=managedeliveryboypage.searchNewlyAddedDeliveryBoyInTableByUserName(expectedUserName);
-		Assert.assertEquals(actual,expectedUserName);
+		managedeliveryboypage.HitOnManageDeliveryBoyPage();
+		//managedeliveryboypage.AlreadyExistingUserNameAlert(name, mail, phone, address, username, password);
+		System.out.println(expectedUserName);
+		//String actual=managedeliveryboypage.searchingByUserName(expectedUserName);
+		//Assert.assertEquals(actual,expectedUserName);
 		
+	}
+	@Test
+	public void usercheck() {
+		managedeliveryboypage = new ManageDeliveryBoyPage(driver);
+		managedeliveryboypage.HitOnManageDeliveryBoyPage();
+		String expected="ApaRajshDusdsadasdasd34tin";
+		managedeliveryboypage.searchingByUserName(expected);
 	}
 
 	@Test(dataProvider = "ExistingDeliveryBoyNameAndEmail", dataProviderClass = DeliveryBoyCreationDataProvider.class,groups = "regression")

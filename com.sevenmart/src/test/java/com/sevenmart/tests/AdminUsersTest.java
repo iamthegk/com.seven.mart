@@ -21,7 +21,7 @@ public class AdminUsersTest extends Base{
 		String actual=adminUsersPage.adminUsersPageVerification();
 		String expected="Admin Users";
 		System.out.println(GeneralUtility.getRandomName());
-		Assert.assertEquals(actual,expected);
+		Assert.assertEquals(actual,expected,"hiting not working");
 		
 	}
 	@Test(dataProvider = "NewAdminUserDataProvider",dataProviderClass = AdminUserDataProvider.class)
