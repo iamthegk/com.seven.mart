@@ -71,6 +71,7 @@ public class ManageDeliveryBoyTest extends Base {
 	public void verify_ResultNotFoundForNonExistingDeliveryBoy(String existingName, String existingEmail) {
 		managedeliveryboypage = new ManageDeliveryBoyPage(driver);
 		managedeliveryboypage.ResultNotFoundForNonExistingDeliveryBoy(existingName, existingEmail);
+		Assert.assertTrue(managedeliveryboypage.noResultFound());
 	}
 
 }

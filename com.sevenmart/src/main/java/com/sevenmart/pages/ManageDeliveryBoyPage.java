@@ -154,9 +154,9 @@ public class ManageDeliveryBoyPage {
 		return generalutility.getTextOfElement(searchedDeliveryBoyEmailFromTable);
 	}
 
-	public String noResultFoundGetText() {
+	public boolean noResultFound() {
 		generalutility = new GeneralUtility(driver);
-		return generalutility.getTextOfElement(resultNotFound);
+		return generalutility.is_Displayed(resultNotFound);
 	}
 	public void HitOnManageDeliveryBoyPage() {
 		loginpage = new LoginPage(driver);
