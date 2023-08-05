@@ -50,6 +50,8 @@ public class ManageDeliveryBoyPage {
 	private WebElement searchWithName;
 	@FindBy(xpath = "//input[@id='ut']")
 	private WebElement searchWithEmail;
+	@FindBy (xpath="//input[@type='text' and @id='ph']")
+	private WebElement searchWithPhone;
 	@FindBy(xpath = "//button[@type='submit']")
 	private WebElement tableSearchButton;
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-warning']")
@@ -60,7 +62,9 @@ public class ManageDeliveryBoyPage {
 	private WebElement resultNotFound;
 	@FindBy(xpath="//tbody/tr/td[5]")
 	private List<WebElement> userNamesFromTable;
-
+	@FindBy(xpath="//tbody/tr/td[5]")
+	private WebElement userNamesFromTableSearch;
+	
 	public ManageDeliveryBoyPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -114,15 +118,15 @@ public class ManageDeliveryBoyPage {
 		savebutton.click();
 	}
 
-	public String succesAlertMessage() {
+	public boolean succesAlertMessage() {
 		generalutility = new GeneralUtility(driver);
-		return generalutility.getTextOfElement(successAlert);
+		return generalutility.is_Displayed(successAlert);
 
 	}
 
-	public String userNameAlreadyExistAlertMessage() {
+	public boolean userNameAlreadyExistAlertMessage() {
 		generalutility = new GeneralUtility(driver);
-		return generalutility.getTextOfElement(userNameAlreadyExistAlert);
+		return generalutility.is_Displayed(successAlert);
 
 	}
 
@@ -136,6 +140,9 @@ public class ManageDeliveryBoyPage {
 
 	public void searchByEmail(String existingEmail) {
 		searchWithEmail.sendKeys(existingEmail);
+	}
+	public void searchByPhone(String number) {
+		searchWithPhone.sendKeys(number);
 	}
 
 	public void searchButtonClickOnFindingExistingDeliveryBoy() {
@@ -162,6 +169,10 @@ public class ManageDeliveryBoyPage {
 		hit_ManageDeliveryBoyLink();
 		
 	}
+	public String getUserNameOfExistingDeliveryBoyFromSearchTable() {
+		generalutility = new GeneralUtility(driver);
+		return generalutility.getTextOfElement(userNamesFromTableSearch);
+	}
 	public String getSuccesAlertText() {
 		generalutility = new GeneralUtility(driver);
 		return generalutility.getTextOfElement(successAlert);
@@ -179,7 +190,7 @@ public class ManageDeliveryBoyPage {
 			
 			
 		
-		return null;
+		return expectedUserName;
 	}
 	public boolean checking(String expectedusername) {
 		boolean value = false;
@@ -230,7 +241,7 @@ public class ManageDeliveryBoyPage {
 		getSuccesAlertText();
 	}
 
-	public void SearchingExistingDeliveryBoy(String existingName, String existingEmail) {
+	public void SearchingExistingDeliveryBoy(String existingName, String existingEmail,String phone) {
 		loginpage = new LoginPage(driver);
 
 		loginpage.login();
@@ -238,6 +249,7 @@ public class ManageDeliveryBoyPage {
 		clickOnSearchButton();
 		searchByName(existingName);
 		searchByEmail(existingEmail);
+		searchByPhone(phone);
 		searchButtonClickOnFindingExistingDeliveryBoy();
 
 	}

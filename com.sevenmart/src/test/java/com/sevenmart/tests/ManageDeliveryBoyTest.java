@@ -16,8 +16,6 @@ public class ManageDeliveryBoyTest extends Base {
 	LoginPage loginpage;
 	PageUility pageutility;
 	ExcelUtility excelutility;
-	
-	
 
 	@Test(groups = "smoke")
 	public void verify_HitOnManageDeliveryBoyPage() {
@@ -28,53 +26,44 @@ public class ManageDeliveryBoyTest extends Base {
 		Assert.assertEquals(actual, expected);
 	}
 
-	@Test(dataProvider = "DeliveryBoyDataProvider", dataProviderClass = DeliveryBoyCreationDataProvider.class)
+	@Test(dataProvider = "deliveryBoyProfileCreation", dataProviderClass = DeliveryBoyCreationDataProvider.class)
 	public void verify_CreateNewDeliveryBoy(String name, String mail, String phone, String address, String username,
 			String password) {
 
 		managedeliveryboypage = new ManageDeliveryBoyPage(driver);
-		managedeliveryboypage.CreateNewDeliveryBoys(name, mail, phone, address,
-				username + GeneralUtility.getRandomName(), password);
+		managedeliveryboypage.CreateNewDeliveryBoys(name, mail, phone, address, username, password);
 		System.out.println(managedeliveryboypage.getSuccesAlertText());
-
-
-	}
-
-	@Test(dataProvider = "deliveryBoyProfileDetailsExcel", dataProviderClass = DeliveryBoyCreationDataProvider.class)
-	public void verify_CreateNewDeliveryBoys(String name, String mail, String phone, String address, String username,
-			String password) {
-		managedeliveryboypage = new ManageDeliveryBoyPage(driver);
-		managedeliveryboypage.CreateNewDeliveryBoys(name, mail, phone, address,
-				username + GeneralUtility.getRandomName(), password);
+		Assert.assertTrue(managedeliveryboypage.succesAlertMessage(), "New Delivery Boy Creation Failed");
 
 	}
 
 	@Test(dataProvider = "deliveryBoyProfileDetailsExcel", dataProviderClass = DeliveryBoyCreationDataProvider.class)
 	public void verify_AlreadyExistingUserNameAlertTest(String name, String mail, String phone, String address,
 			String username, String password) {
-		ExcelUtility excelutility=new ExcelUtility();
+		ExcelUtility excelutility = new ExcelUtility();
 		excelutility.setExcelFile("DeliveryBoyData", "AlreadyExistingUserDetails");
-		String expectedUserName=excelutility.getCellData(0,4);
+		String expectedUserName = excelutility.getCellData(0, 4);
 		managedeliveryboypage = new ManageDeliveryBoyPage(driver);
 		managedeliveryboypage.HitOnManageDeliveryBoyPage();
-		//managedeliveryboypage.AlreadyExistingUserNameAlert(name, mail, phone, address, username, password);
-		System.out.println(expectedUserName);
-		//String actual=managedeliveryboypage.searchingByUserName(expectedUserName);
-		//Assert.assertEquals(actual,expectedUserName);
-		
-	}
-	@Test
-	public void usercheck() {
-		managedeliveryboypage = new ManageDeliveryBoyPage(driver);
-		managedeliveryboypage.HitOnManageDeliveryBoyPage();
-		String expected="ApaRajshDusdsadasdasd34tin";
-		managedeliveryboypage.searchingByUserName(expected);
+		String actual = managedeliveryboypage.searchingByUserName(expectedUserName);
+		Assert.assertEquals(actual, expectedUserName, "Username not exist");
+
 	}
 
-	@Test(dataProvider = "ExistingDeliveryBoyNameAndEmail", dataProviderClass = DeliveryBoyCreationDataProvider.class,groups = "regression")
-	public void verify_SearchingExistingDeliveryBoy(String existingName, String existingEmail) {
+
+	@Test(dataProvider = "deliveryBoyProfileDetailsExcel", dataProviderClass = DeliveryBoyCreationDataProvider.class, groups = "regression")
+	public void verify_SearchingExistingDeliveryBoy(String name, String mail, String phone, String address,
+			String username, String password) {
 		managedeliveryboypage = new ManageDeliveryBoyPage(driver);
-		managedeliveryboypage.SearchingExistingDeliveryBoy(existingName, existingEmail);
+		ExcelUtility excelutility = new ExcelUtility();
+		excelutility.setExcelFile("DeliveryBoyData", "AlreadyExistingUserDetails");
+		String existingname=excelutility.getCellData(0, 0);
+		String existingemail=excelutility.getCellData(0, 1);
+		String phoneNumber=excelutility.getCellData(0, 2);
+		String expectedUserName=excelutility.getCellData(0, 4);
+		managedeliveryboypage.SearchingExistingDeliveryBoy(existingname, existingemail,phoneNumber);
+		String actualUserName=managedeliveryboypage.getUserNameOfExistingDeliveryBoyFromSearchTable();
+		Assert.assertEquals(actualUserName, expectedUserName,"Searched user not found");
 		
 	}
 

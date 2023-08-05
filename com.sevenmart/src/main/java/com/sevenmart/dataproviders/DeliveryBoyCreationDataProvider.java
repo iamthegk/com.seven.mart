@@ -6,10 +6,11 @@ import com.sevenmart.utilities.ExcelUtility;
 
 public class DeliveryBoyCreationDataProvider {
 	ExcelUtility excelutility=new ExcelUtility();
-	@DataProvider(name="DeliveryBoyDataProvider")
-	public Object[][] DeliveryBoyDataProvider()
-	{
-		return new Object [][] {{"gopidas22","gdas22dopi@gmail.com","821121","gokulas22daam ndd","d22akfg","125225535"}};
+	@DataProvider(name = "deliveryBoyProfileCreation")
+	public Object[][] deliveryBoyProfileCreations() {
+		excelutility.setExcelFile("DeliveryBoyData", "CreatingNewDelivery");
+		Object data[][] = excelutility.getMultiDimensionalData(2, 6);
+		return data;
 	}
 	@DataProvider(name="ExistingDeliveryBoyDataProvider")
 	public Object[][] ExistingDeliveryBoyDataProvider()
