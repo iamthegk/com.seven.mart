@@ -77,7 +77,7 @@ public class Base {
 			screenshotsutility.takeScreenShot(driver, itestresult.getName());
 
 		}
-		driver.close();
+		//driver.close();
 
 	}
 

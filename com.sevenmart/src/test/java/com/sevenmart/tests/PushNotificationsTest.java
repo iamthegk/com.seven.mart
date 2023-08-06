@@ -25,14 +25,24 @@ public class PushNotificationsTest extends Base {
 	}
 	@Test
 	public void verify_EnterStringOnTitleAndDescription() {
-		loginpage = new LoginPage(driver);
 		pushnotificationpage = new PushNotificationsPage(driver);
-		verifyPushNotificationLinkHit();
-		excelutility.setExcelFile("LoginData","InvalidLoginCredentials");
+		pushnotificationpage.EnterStringOnTitleAndDescription();
+		excelutility.setExcelFile("PushNotificationData","Sheet1");
 		String titleMessage=excelutility.getCellData(0, 0);
 		String descriptionMessage=excelutility.getCellData(0, 1);
 		pushnotificationpage.passValuesOnTitleAndDescription(titleMessage, descriptionMessage);
-		
+		pushnotificationpage.clickSubmit();
+		Assert.assertTrue(pushnotificationpage.successAlert(), "Sending push message is not succesfull");
+		}
+	public void verify_ResetButtonIsWorking() {
+		pushnotificationpage = new PushNotificationsPage(driver);
+		pushnotificationpage.EnterStringOnTitleAndDescription();
+		excelutility.setExcelFile("PushNotificationData","Sheet1");
+		String titleMessage=excelutility.getCellData(0, 0);
+		String descriptionMessage=excelutility.getCellData(0, 1);
+		pushnotificationpage.passValuesOnTitleAndDescription(titleMessage, descriptionMessage);
+		pushnotificationpage.clickReset();
+		Assert.assertTrue(false);
 	}
 	
 
