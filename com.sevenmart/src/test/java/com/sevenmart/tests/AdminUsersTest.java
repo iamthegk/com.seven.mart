@@ -9,11 +9,13 @@ import com.sevenmart.pages.AdminUsersPage;
 import com.sevenmart.pages.LoginPage;
 import com.sevenmart.utilities.ExcelUtility;
 import com.sevenmart.utilities.GeneralUtility;
+import com.sevenmart.utilities.PageUility;
 
 public class AdminUsersTest extends Base{
 	AdminUsersPage adminUsersPage;
 	LoginPage loginpage;
 	ExcelUtility excelutility;
+	PageUility pageutility;
 	@Test(priority=1)
 	public void verify_HitOnAdminUsersPage() {
 		loginpage=new LoginPage(driver);
@@ -113,7 +115,9 @@ public class AdminUsersTest extends Base{
 		loginpage.login();
 		adminUsersPage.hitOnAdminUsersPage();
 		adminUsersPage.deleteUser("Appukuttan1_Admin");
-		
+		pageutility=new PageUility(driver);
+		pageutility.acceptAlert();
+		Assert.assertTrue(adminUsersPage.alertDeleteMessage(),"User not deleted");
 		
 		
 	}

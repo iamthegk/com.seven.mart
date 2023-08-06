@@ -52,6 +52,8 @@ public class AdminUsersPage {
 	private WebElement newlyCreatedUser;
 	@FindBy(xpath = "//table/tbody/tr/td[1]")
 	private List<WebElement> userNames;
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	private WebElement deleteSuccessfullAlert;
 
 	public void hitOnAdminUsersPage() {
 		adminUsersButton.click();
@@ -121,6 +123,10 @@ public class AdminUsersPage {
 		WebElement deleteButton = driver.findElement(By.xpath("//table/tbody/tr[" + pos + "]/td[5]/a[3]"));
 		pageutility.scrollAndClick(deleteButton);
 
+	}
+	public boolean alertDeleteMessage() {
+		GeneralUtility generalUtility = new GeneralUtility(driver);
+		return generalUtility.is_Displayed(deleteSuccessfullAlert);
 	}
 
 }
