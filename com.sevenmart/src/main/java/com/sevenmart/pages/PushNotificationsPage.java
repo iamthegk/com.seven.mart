@@ -11,14 +11,17 @@ import com.sevenmart.utilities.GeneralUtility;
 
 public class PushNotificationsPage {
 	WebDriver driver;
+	GeneralUtility generalUtility;
 
-	Properties properties = new Properties();
+	
 	@FindBy(xpath = "//i[@class='nav-icon fas fa-fas fa-bell']")
-	WebElement PushNotification;
+	private WebElement PushNotificationLink;
 	@FindBy(xpath="//input[@id='description']")
-	WebElement description;
+	private WebElement description;
 	@FindBy(xpath="//input[@id='title']")
-	WebElement title;
+	private WebElement title;
+	@FindBy(xpath="//li[@class='breadcrumb-item active']")
+	private WebElement pushNotificationPageConfirm;
 
 	public PushNotificationsPage(WebDriver driver) {
 		this.driver = driver;
@@ -27,12 +30,16 @@ public class PushNotificationsPage {
 
 	public void hitOnPushNotificationLink() {
 
-		PushNotification.click();
+		PushNotificationLink.click();
 
 	}
 	public void passValuesOnTitleAndDescription(String titleText,String descriptionText) {
 		title.sendKeys(titleText);
 		description.sendKeys(descriptionText);
+	}
+	public boolean hitConfirmPushnotificationPage() {
+		generalUtility=new GeneralUtility(driver);
+		return generalUtility.is_Displayed(pushNotificationPageConfirm);
 	}
 
 }

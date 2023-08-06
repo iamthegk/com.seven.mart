@@ -1,5 +1,6 @@
 package com.sevenmart.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.sevenmart.base.Base;
@@ -20,6 +21,7 @@ public class PushNotificationsTest extends Base {
 		pushnotificationpage = new PushNotificationsPage(driver);
 		loginpage.login();
 		pushnotificationpage.hitOnPushNotificationLink();
+		Assert.assertTrue(pushnotificationpage.hitConfirmPushnotificationPage(),"Push Notification Page is not opened");
 	}
 	@Test
 	public void verify_EnterStringOnTitleAndDescription() {

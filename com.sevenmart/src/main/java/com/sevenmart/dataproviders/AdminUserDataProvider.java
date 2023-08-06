@@ -2,7 +2,10 @@ package com.sevenmart.dataproviders;
 
 import org.testng.annotations.DataProvider;
 
+import com.sevenmart.utilities.ExcelUtility;
+
 public class AdminUserDataProvider {
+	ExcelUtility excelutility=new ExcelUtility();
 	@DataProvider(name="NewAdminUserDataProvider")
 	public Object[][] NewAdminUserDataProvider()
 	{
@@ -24,4 +27,19 @@ public class AdminUserDataProvider {
 		return new Object [][] {{"fffasdasdsdfscssdf","1sagsdsddasd223"}};
 	}
 
+	@DataProvider(name = "NewAdminCreationFromAdminPage")
+	public Object[][] deliveryBoyProfileDetails() {
+		excelutility.setExcelFile("AdminUsers", "UsersInfo");
+		Object data[][] = excelutility.getMultiDimensionalData(4, 2);
+		return data;
+	}
+
 }
+
+
+
+
+
+
+
+

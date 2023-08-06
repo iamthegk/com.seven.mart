@@ -16,16 +16,15 @@ public class LoginTest extends Base{
 	
 	@Test(priority=1)
 	public void verify_AdminUserlogin() {
-		loginpage =new LoginPage(driver);
-		homepage=new HomePage(driver);
-		loginpage.login();
+		loginpage=new LoginPage(driver);
+		loginpage.AdminUserlogin();
+		homepage =new HomePage(driver);
 		String actualProfileName=homepage.getProfileName();
 		String expectedProfileName="Admin";
-		Assert.assertEquals(actualProfileName,expectedProfileName,"error");
-		
+		Assert.assertEquals(actualProfileName,expectedProfileName,"Admin Login Failed");
 	}
 	@Test
-	public void verify_loginUsingWrongCredentialsAlertMessage() {
+	public void verify_LoginUsingWrongCredentials() {
 		loginpage =new LoginPage(driver);
 		excelutility.setExcelFile("LoginData","InvalidLoginCredentials");
 		String invalidUserName=excelutility.getCellData(0, 0);
@@ -33,16 +32,15 @@ public class LoginTest extends Base{
 		loginpage.login(invalidUserName,invalidPassword);
 		String actualerror=loginpage.getErrorMessage();
 		String expectedErrorMessage="Alert!";
-		Assert.assertEquals(actualerror,expectedErrorMessage);
+		Assert.assertEquals(actualerror,expectedErrorMessage,"Wrong Credentials Accepted");
 		
 		
 	}
-	@Test(dataProvider = "InvalidCredentials",dataProviderClass =TestDataProviders.class)
-	public void verify_InvalidCredentialsAlertMessage(String invalidUserName,String invalidPassword ) {
+	@Test
+	public void verify_RememberMeCheckBoxIsNotSelectedByDefaultInLoginPage() {
 		loginpage =new LoginPage(driver);
-		loginpage.login(invalidUserName,invalidPassword);
-		
-		
+		loginpage.accessLoginPageWithoutLogin();
+		Assert.assertFalse(loginpage.rememberMeCheckBox(),"Remember me check box is checked by default");
 	}
 	
 

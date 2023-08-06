@@ -81,9 +81,21 @@ public class LoginPage {
 		return generalutility.getTextOfElement(errorMessage);
 	}
 	public void AdminUserlogin() {
+		
+		homepage=new HomePage(driver);
 		login();
 		
 		
 	}
+	public boolean rememberMeCheckBox() {
+		generalutility = new GeneralUtility(driver);
+		return generalutility.is_Selected(rememberMeCheckBox);
+		
+	}
+	public void accessLoginPageWithoutLogin() {
+		LoginPage login=new LoginPage(driver);
+	
+	}
+	
 
 }
