@@ -33,6 +33,12 @@ public class AdminUserDataProvider {
 		Object data[][] = excelutility.getMultiDimensionalData(4, 2);
 		return data;
 	}
+	@DataProvider(name = "NewAdminCreationFromAdminPageUsingExcel")
+	public Object[][] deliveryBoyProfileDetailsExcel() {
+		excelutility.setExcelFile("AdminUsers", "UsersInfo");
+		Object data[][] = excelutility.getMultiDimensionalData(4, 2);
+		return data;
+	}
 
 }
 

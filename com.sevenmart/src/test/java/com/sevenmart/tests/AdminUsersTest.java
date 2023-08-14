@@ -28,17 +28,15 @@ public class AdminUsersTest extends Base{
 		Assert.assertEquals(actual,expected,"hiting not working");
 		
 	}
-	@Test()
-	public void verifyNewAdminCreation() {
+	@Test(dataProvider = "NewAdminCreationFromAdminPageUsingExcel", dataProviderClass = AdminUserDataProvider.class)
+	public void verifyNewAdminCreation(String usernameFromExcel,String passwordFromExcel) {
 		loginpage=new LoginPage(driver);
 		adminUsersPage=new AdminUsersPage(driver);
-		excelutility=new ExcelUtility();
-		excelutility.setExcelFile("AdminUsers", "UsersInfo");
 		loginpage.login();
 		adminUsersPage.hitOnAdminUsersPage();
 		adminUsersPage.clickOnCreateButton();
-		String username=excelutility.getCellData(0, 0);
-		String password=excelutility.getCellData(0, 1);
+		String username=usernameFromExcel;
+		String password=passwordFromExcel;
 		adminUsersPage.enterUserName(username);
 		adminUsersPage.enterPassWord(password);
 		adminUsersPage.selectUserType("Admin");
@@ -87,6 +85,7 @@ public class AdminUsersTest extends Base{
 		String actualUsetName=adminUsersPage.userNameCreated();
 		Assert.assertEquals(actualUsetName, expectedUserName,"Newly Created Partner User Not Found, Created admin user name not found in the table");
 	}
+	
 	@Test()
 	public void verifyNewDeliveryBoyCreation() {
 		loginpage=new LoginPage(driver);
