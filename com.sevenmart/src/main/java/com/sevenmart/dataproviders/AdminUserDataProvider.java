@@ -6,39 +6,34 @@ import com.sevenmart.utilities.ExcelUtility;
 
 public class AdminUserDataProvider {
 	ExcelUtility excelutility=new ExcelUtility();
-	@DataProvider(name="NewAdminUserDataProvider")
-	public Object[][] NewAdminUserDataProvider()
-	{
-		return new Object [][] {{"gkadmin","1223"}};
-	}
-	@DataProvider(name="NewStaffUserDataProvider")
-	public Object[][] StaffUserDataProvide()
-	{
-		return new Object [][] {{"gkstaff","1223"}};
-	}
-	@DataProvider(name="NewPartnerUserDataProvider")
-	public Object[][] PartnerUserDataProvider()
-	{
-		return new Object [][] {{"gkpardastner","125423"}};
-	}
-	@DataProvider(name="NewDeliveryUserDataProvider")
-	public Object[][] DeliveryUserDataProvider()
-	{
-		return new Object [][] {{"fffasdasdsdfscssdf","1sagsdsddasd223"}};
-	}
-
-	@DataProvider(name = "NewAdminCreationFromAdminPage")
-	public Object[][] deliveryBoyProfileDetails() {
-		excelutility.setExcelFile("AdminUsers", "UsersInfo");
-		Object data[][] = excelutility.getMultiDimensionalData(4, 2);
-		return data;
-	}
+	
 	@DataProvider(name = "NewAdminCreationFromAdminPageUsingExcel")
-	public Object[][] deliveryBoyProfileDetailsExcel() {
-		excelutility.setExcelFile("AdminUsers", "UsersInfo");
+	public Object[][] NewAdminCreationFromAdminPageUsingExcel() {
+		excelutility.setExcelFile("AdminUsers", "AdminCreation");
 		Object data[][] = excelutility.getMultiDimensionalData(4, 2);
 		return data;
 	}
+	@DataProvider(name = "NewStaffCreationFromAdminPageUsingExcel")
+	public Object[][] NewStaffCreationFromAdminPageUsingExcel() {
+		excelutility.setExcelFile("AdminUsers", "StaffCreation");
+		Object data[][] = excelutility.getMultiDimensionalData(4, 2);
+		return data;
+	}
+	@DataProvider(name = "NewPartnerCreationFromAdminPageUsingExcel")
+	public Object[][] NewPartnerCreationFromAdminPageUsingExcel() {
+		excelutility.setExcelFile("AdminUsers", "PartnerCreation");
+		Object data[][] = excelutility.getMultiDimensionalData(4, 2);
+		return data;
+	}
+	@DataProvider(name = "NewDeliveryBoyCreationFromAdminPageUsingExcel")
+	public Object[][] NewDeliveryBoyCreationFromAdminPageUsingExcel() {
+		excelutility.setExcelFile("AdminUsers", "DeliveryBoyCreation");
+		Object data[][] = excelutility.getMultiDimensionalData(4, 2);
+		return data;
+	}
+	
+	
+	
 
 }
 

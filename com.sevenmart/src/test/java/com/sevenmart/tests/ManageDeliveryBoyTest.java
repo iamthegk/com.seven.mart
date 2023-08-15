@@ -41,7 +41,7 @@ public class ManageDeliveryBoyTest extends Base {
 	public void verify_AlreadyExistingUserNameAlertTest(String name, String mail, String phone, String address,
 			String username, String password) {
 		ExcelUtility excelutility = new ExcelUtility();
-		excelutility.setExcelFile("DeliveryBoyData", "AlreadyExistingUserDetails");
+		excelutility.setExcelFile("DeliveryBoyData", "CreatingNewDelivery");
 		String expectedUserName = excelutility.getCellData(0, 4);
 		managedeliveryboypage = new ManageDeliveryBoyPage(driver);
 		managedeliveryboypage.HitOnManageDeliveryBoyPage();
@@ -51,9 +51,8 @@ public class ManageDeliveryBoyTest extends Base {
 	}
 
 
-	@Test(dataProvider = "deliveryBoyProfileDetailsExcel", dataProviderClass = DeliveryBoyCreationDataProvider.class, groups = "regression")
-	public void verify_SearchingExistingDeliveryBoy(String name, String mail, String phone, String address,
-			String username, String password) {
+	@Test(groups = "regression")
+	public void verify_SearchingExistingDeliveryBoy() {
 		managedeliveryboypage = new ManageDeliveryBoyPage(driver);
 		ExcelUtility excelutility = new ExcelUtility();
 		excelutility.setExcelFile("DeliveryBoyData", "AlreadyExistingUserDetails");

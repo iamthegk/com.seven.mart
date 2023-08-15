@@ -35,27 +35,23 @@ public class AdminUsersTest extends Base{
 		loginpage.login();
 		adminUsersPage.hitOnAdminUsersPage();
 		adminUsersPage.clickOnCreateButton();
-		String username=usernameFromExcel;
-		String password=passwordFromExcel;
-		adminUsersPage.enterUserName(username);
-		adminUsersPage.enterPassWord(password);
+		adminUsersPage.enterUserName(usernameFromExcel);
+		adminUsersPage.enterPassWord(passwordFromExcel);
 		adminUsersPage.selectUserType("Admin");
 		adminUsersPage.clickOnSaveButton();
-		String expectedUserName=username;
+		String expectedUserName=usernameFromExcel;
 		String actualUsetName=adminUsersPage.userNameCreated();
-		Assert.assertEquals(actualUsetName, expectedUserName,"Newly Created Admin User Not Found, Created admin user name not found in the table");
+		Assert.assertEquals(actualUsetName, expectedUserName,"New admin creation failed");
 	}
-	@Test()
-	public void verifyNewStaffCreation() {
+	@Test(dataProvider = "NewStaffCreationFromAdminPageUsingExcel", dataProviderClass = AdminUserDataProvider.class)
+	public void verifyNewStaffCreation(String staffUsernameFromExcel,String staffPasswordFromExcel) {
 		loginpage=new LoginPage(driver);
 		adminUsersPage=new AdminUsersPage(driver);
-		excelutility=new ExcelUtility();
-		excelutility.setExcelFile("AdminUsers", "UsersInfo");
 		loginpage.login();
 		adminUsersPage.hitOnAdminUsersPage();
 		adminUsersPage.clickOnCreateButton();
-		String username=excelutility.getCellData(1, 0);
-		String password=excelutility.getCellData(1, 1);
+		String username=staffUsernameFromExcel;
+		String password=staffPasswordFromExcel;
 		adminUsersPage.hitOnAdminUsersPage();
 		adminUsersPage.clickOnCreateButton();
 		adminUsersPage.enterUserName(username);
@@ -64,17 +60,15 @@ public class AdminUsersTest extends Base{
 		adminUsersPage.clickOnSaveButton();
 		String expectedUserName=username;
 		String actualUsetName=adminUsersPage.userNameCreated();
-		Assert.assertEquals(actualUsetName, expectedUserName,"Newly Created Staff User Not Found, Created admin user name not found in the table");
+		Assert.assertEquals(actualUsetName, expectedUserName,"New Staff creation failed");
 	}
-	@Test()
-	public void verifyNewPartnerCreation() {
+	@Test(dataProvider = "NewPartnerCreationFromAdminPageUsingExcel", dataProviderClass = AdminUserDataProvider.class)
+	public void verifyNewPartnerCreation(String partnerUsernameFromExcel,String partnerPasswordFromExcel) {
 		loginpage=new LoginPage(driver);
 		adminUsersPage=new AdminUsersPage(driver);
 		loginpage.login();
-		excelutility=new ExcelUtility();
-		excelutility.setExcelFile("AdminUsers", "UsersInfo");
-		String username=excelutility.getCellData(2, 0);
-		String password=excelutility.getCellData(2, 1);
+		String username=partnerUsernameFromExcel;
+		String password=partnerPasswordFromExcel;
 		adminUsersPage.hitOnAdminUsersPage();
 		adminUsersPage.clickOnCreateButton();
 		adminUsersPage.enterUserName(username);
@@ -83,18 +77,16 @@ public class AdminUsersTest extends Base{
 		adminUsersPage.clickOnSaveButton();
 		String expectedUserName=username;
 		String actualUsetName=adminUsersPage.userNameCreated();
-		Assert.assertEquals(actualUsetName, expectedUserName,"Newly Created Partner User Not Found, Created admin user name not found in the table");
+		Assert.assertEquals(actualUsetName, expectedUserName,"New partner creation failed");
 	}
 	
-	@Test()
-	public void verifyNewDeliveryBoyCreation() {
+	@Test(dataProvider = "NewDeliveryBoyCreationFromAdminPageUsingExcel", dataProviderClass = AdminUserDataProvider.class)
+	public void verifyNewDeliveryBoyCreation(String deliveryBoyUsernameFromExcel,String deliveryBoyPasswordFromExcel) {
 		loginpage=new LoginPage(driver);
 		adminUsersPage=new AdminUsersPage(driver);
 		loginpage.login();
-		excelutility=new ExcelUtility();
-		excelutility.setExcelFile("AdminUsers", "UsersInfo");
-		String username=excelutility.getCellData(3, 0);
-		String password=excelutility.getCellData(3, 1);
+		String username=deliveryBoyUsernameFromExcel;
+		String password=deliveryBoyPasswordFromExcel;
 		adminUsersPage.hitOnAdminUsersPage();
 		adminUsersPage.clickOnCreateButton();
 		adminUsersPage.enterUserName(username);
@@ -103,7 +95,7 @@ public class AdminUsersTest extends Base{
 		adminUsersPage.clickOnSaveButton();
 		String expectedUserName=username;
 		String actualUsetName=adminUsersPage.userNameCreated();
-		Assert.assertEquals(actualUsetName, expectedUserName,"Newly Created Delivery Boy User Not Found, Created admin user name not found in the table");
+		Assert.assertEquals(actualUsetName, expectedUserName,"New Delivery Boy Creation Failed");
 		
 	
 	}
@@ -113,12 +105,14 @@ public class AdminUsersTest extends Base{
 		adminUsersPage=new AdminUsersPage(driver);
 		loginpage.login();
 		adminUsersPage.hitOnAdminUsersPage();
-		adminUsersPage.deleteUser("Appukuttan1_Admin");
+		adminUsersPage.deleteUser("reymondd23deliver");
 		pageutility=new PageUility(driver);
 		pageutility.acceptAlert();
 		Assert.assertTrue(adminUsersPage.alertDeleteMessage(),"User not deleted");
 		
 		
 	}
-
+	
 }
+
+

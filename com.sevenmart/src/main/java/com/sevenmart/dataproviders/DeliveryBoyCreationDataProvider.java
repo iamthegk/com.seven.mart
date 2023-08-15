@@ -6,8 +6,10 @@ import com.sevenmart.utilities.ExcelUtility;
 
 public class DeliveryBoyCreationDataProvider {
 	ExcelUtility excelutility=new ExcelUtility();
+	
 	@DataProvider(name = "deliveryBoyProfileCreation")
-	public Object[][] deliveryBoyProfileCreations() {
+	public Object[][] deliveryBoyProfileCreations() 
+	{
 		excelutility.setExcelFile("DeliveryBoyData", "CreatingNewDelivery");
 		Object data[][] = excelutility.getMultiDimensionalData(2, 6);
 		return data;

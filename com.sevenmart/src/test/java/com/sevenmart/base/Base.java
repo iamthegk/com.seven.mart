@@ -22,8 +22,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base {
 	public WebDriver driver;
-	Properties properties = new Properties();// java inbuilt class for reading files in keyvalue pair.
-	FileInputStream fileinputstream;// file read
+	Properties properties = new Properties();
+	FileInputStream fileinputstream;
 	ScreenShotsUtility screenshotsutility = new ScreenShotsUtility();
 
 	/** Initializing config.properties file **/
@@ -77,7 +77,7 @@ public class Base {
 			screenshotsutility.takeScreenShot(driver, itestresult.getName());
 
 		}
-		//driver.close();
+		driver.close();
 
 	}
 
