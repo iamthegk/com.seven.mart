@@ -209,7 +209,7 @@ public class ManageDeliveryBoyPage {
 
 	public void AlreadyExistingUserNameAlert(String name, String mail, String phone, String address, String username,
 			String password) {
-		loginpage = new LoginPage(driver);
+		loginpage =new LoginPage(driver);
 
 		loginpage.login();
 		hit_ManageDeliveryBoyLink();
