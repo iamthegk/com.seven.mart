@@ -37,7 +37,7 @@ public class ManageDeliveryBoyTest extends Base {
 
 	}
 
-	@Test(dataProvider = "deliveryBoyProfileDetailsExcel", dataProviderClass = DeliveryBoyCreationDataProvider.class)
+	@Test(dataProvider = "deliveryBoyProfileDetailsExcel", dataProviderClass = DeliveryBoyCreationDataProvider.class,groups="smoke")
 	public void verify_AlreadyExistingUserNameAlertTest(String name, String mail, String phone, String address,
 			String username, String password) {
 		ExcelUtility excelutility = new ExcelUtility();
@@ -50,7 +50,7 @@ public class ManageDeliveryBoyTest extends Base {
 
 	}
 
-
+	
 	@Test(groups = "regression")
 	public void verify_SearchingExistingDeliveryBoy() {
 		managedeliveryboypage = new ManageDeliveryBoyPage(driver);

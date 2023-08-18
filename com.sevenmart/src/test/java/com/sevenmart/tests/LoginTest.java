@@ -14,7 +14,7 @@ public class LoginTest extends Base{
 	HomePage homepage;
 	ExcelUtility excelutility=new ExcelUtility();
 	
-	@Test(priority=1)
+	@Test(priority=1,groups="smoke")
 	public void verify_AdminUserlogin() {
 		loginpage=new LoginPage(driver);
 		loginpage.AdminUserlogin();
@@ -23,7 +23,7 @@ public class LoginTest extends Base{
 		String expectedProfileName="Admin";
 		Assert.assertEquals(actualProfileName,expectedProfileName,"Admin Login Failed");
 	}
-	@Test
+	@Test(groups="regression")
 	public void verify_LoginUsingWrongCredentials() {
 		loginpage =new LoginPage(driver);
 		excelutility.setExcelFile("LoginData","InvalidLoginCredentials");
@@ -36,7 +36,7 @@ public class LoginTest extends Base{
 		
 		
 	}
-	@Test
+	@Test(groups="smoke")
 	public void verify_RememberMeCheckBoxIsNotSelectedByDefaultInLoginPage() {
 		loginpage =new LoginPage(driver);
 		loginpage.accessLoginPageWithoutLogin();

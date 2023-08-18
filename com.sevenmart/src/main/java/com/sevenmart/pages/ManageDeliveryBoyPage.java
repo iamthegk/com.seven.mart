@@ -192,7 +192,7 @@ public class ManageDeliveryBoyPage {
 		
 		return expectedUserName;
 	}
-	public boolean checking(String expectedusername) {
+	public boolean checking(String expectedusername) {// change the function name and create like a utility
 		boolean value = false;
 		List<WebElement> list1=userNamesFromTable ;
 		
